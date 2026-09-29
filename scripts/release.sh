@@ -36,19 +36,20 @@ codesign --force --sign "$sign" --entitlements FinderPath/FinderPath.entitlement
 codesign --verify --deep --strict $APP
 echo "Architectures: $(lipo -archs $APP/Contents/MacOS/FinderPath)"
 
-# Disk image contents: the app, a shortcut to Applications to drag it onto, and instructions.
+# Disk image contents: the app, a shortcut to Applications to drag it onto, instructions and the license.
 staging=$(mktemp -d)
 trap 'rm -rf "$staging"' EXIT
 ditto $APP "$staging/FinderPath.app"
 ln -s /Applications "$staging/Applications"
 sed "s/{{VERSION}}/$VERSION/" scripts/How\ to\ Install.txt > "$staging/How to Install.txt"
+cp LICENSE "$staging/License.txt"
 
 mkdir -p dist
 rm -f "$DMG" "$staging.dmg"
 hdiutil create -volname "FinderPath $VERSION" -srcfolder "$staging" -fs HFS+ -format UDRW -ov \
     "$staging.dmg" >/dev/null
 
-# Lay out the window: app on the left, Applications on the right, instructions below. Cosmetic,
+# Lay out the window: app on the left, Applications on the right, instructions and license below. Cosmetic,
 # so a failure (e.g. Terminal not allowed to control Finder) only leaves the default layout.
 device=$(hdiutil attach -readwrite -noverify -noautoopen "$staging.dmg" | grep -E '^/dev/' | head -1 | awk '{print $1}')
 volume="FinderPath $VERSION"
@@ -65,7 +66,8 @@ tell application "Finder"
         set text size of icon view options of container window to 13
         set position of item "FinderPath.app" of container window to {140, 140}
         set position of item "Applications" of container window to {400, 140}
-        set position of item "How to Install.txt" of container window to {270, 290}
+        set position of item "How to Install.txt" of container window to {200, 290}
+        set position of item "License.txt" of container window to {340, 290}
         close
     end tell
 end tell
