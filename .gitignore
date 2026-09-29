@@ -1,5 +1,29 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Build output (scripts/install.sh and scripts/release.sh)
 build/
 dist/
+DerivedData/
+*.dSYM
+*.dSYM.zip
+
+# Xcode user data
 xcuserdata/
 *.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Signing material: never commit certificates or private keys
+*.p12
+*.pem
+*.cer
+*.key
