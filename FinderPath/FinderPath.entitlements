@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Not sandboxed: the app must script Finder and resolve paths against the real home folder. -->
+    <key>com.apple.security.automation.apple-events</key><true/>
+    <!-- Shares settings between the app and the extension. -->
+    <key>com.apple.security.application-groups</key>
+    <array><string>group.com.aredah.FinderPath</string></array>
+</dict>
+</plist>

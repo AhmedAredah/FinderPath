@@ -1,0 +1,37 @@
+FinderPath {{VERSION}}
+A Windows-style path bar and right-click menu for Finder. Requires macOS 14 or later.
+
+
+INSTALL
+
+1. Drag FinderPath onto the Applications folder in this window.
+
+2. Open FinderPath from your Applications folder.
+
+   FinderPath isn't from the App Store or a registered Apple developer, so macOS
+   blocks it the first time. To open it anyway:
+
+   • macOS 15 Sequoia or later: double-click FinderPath and click Done when macOS
+     blocks it. Then open System Settings ▸ Privacy & Security, scroll down, click
+     "Open Anyway" next to FinderPath, and confirm.
+
+   • macOS 14 Sonoma: Control-click (or right-click) FinderPath in Applications,
+     choose Open, then click Open.
+
+   You only need to do this once.
+
+3. The Welcome window walks you through the rest: turning on the Finder extension
+   and adding the Go to Path button to Finder's toolbar.
+
+
+UPDATE
+
+Quit FinderPath (it runs in the background: open it and press ⌘Q), then drag the new
+version onto Applications and choose Replace.
+
+
+UNINSTALL
+
+Quit FinderPath, then move it from Applications to the Trash. Its settings are in
+~/Library/Group Containers/group.com.aredah.FinderPath and New-menu template files
+in ~/Library/Application Support/FinderPath; delete those too to remove everything.
